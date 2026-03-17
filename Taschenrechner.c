@@ -1,8 +1,9 @@
-#include <stdio.h>
+#include <stdio.h>                                      // Standerd input / output.
 #include <string.h>
+#include <stdlib.h>                                     // Standard functions library.
 
-long double firstNumber;
-long double secondNumber;
+double firstNumber;                                     // Variables.
+double secondNumber;
 int language;
 int choice;
 char menuOneFour[64];
@@ -16,13 +17,13 @@ char firstNumberText[64];
 char secondNumberText[64];
 char errorDivZero[64];
 
-void languageMenu() {
+void languageMenu() {                                   // Language selection menu.
     printf("1. DEU\n");
     printf("2. ENG\n");
     scanf("%d", &language);
 }
 
-void mainMenu() {
+void mainMenu() {                                       // Main menu.
     printf("%s\n", exitMenu);
     printf("%s\n", addMenu);
     printf("%s\n", subMenu);
@@ -32,44 +33,44 @@ void mainMenu() {
     scanf("%d", &choice);
     }
 
-void getNumbersAddition() {
+void getNumbersAddition() {                             // Asking for the first and second nummber in addition and saves the input.
     printf("%s", firstNumberText);
-    scanf("%Lf", &firstNumber);
+    scanf("%lf", &firstNumber);
     printf("%s", secondNumberText);
-    scanf("%Lf", &secondNumber);
+    scanf("%lf", &secondNumber);
 }
 
-void getNumbersSubtraction() {
+void getNumbersSubtraction() {                          // Asking for the first and second number in subtraction and saves the input.
     printf("%s", firstNumberText);
-    scanf("%Lf", &firstNumber);
+    scanf("%lf", &firstNumber);
     printf("%s", secondNumberText);
-    scanf("%Lf", &secondNumber);
+    scanf("%lf", &secondNumber);
 }
-void getNumbersMultiplication() {
+void getNumbersMultiplication() {                       // Asking for the first and second number in multiplication and saves the input.
     printf("%s", firstNumberText);
-    scanf("%Lf", &firstNumber);
+    scanf("%lf", &firstNumber);
     printf("%s", secondNumberText);
-    scanf("%Lf", &secondNumber);
-}
-
-void getNumbersDivision() {
-    printf("%s", firstNumberText);
-    scanf("%Lf", &firstNumber);
-    printf("%s", secondNumberText);
-    scanf("%Lf", &secondNumber);
+    scanf("%lf", &secondNumber);
 }
 
-int main() {
+void getNumbersDivision() {                             // Asking for the first and second number in division and saves the input.
+    printf("%s", firstNumberText);
+    scanf("%lf", &firstNumber);
+    printf("%s", secondNumberText);
+    scanf("%lf", &secondNumber);
+}
 
-    languageMenu();
+int main() {                                            // Main Code starts here.
 
-    while (language < 1 || language > 2) {
+    languageMenu();                                     // Opens the language menu.
+
+    while (language < 1 || language > 2) {              // Fail safe for other inputs rather than one or two.
         printf("Bitte wähle eine Sprache!\n");
         printf("Please choose a language!\n");
         languageMenu();
     }
 
-    if (language == 1) {
+    if (language == 1) {                                                                    // Language pack German.
         strcpy(menuOneFour, "Bitte wählen Sie nur eine Zahl zwischen 0 und 4.");
         strcpy(exitMenu, "0. Beenden!");
         strcpy(addMenu, "1. Addieren");
@@ -82,7 +83,7 @@ int main() {
         strcpy(errorDivZero, "Fehler: Das teilen durch Null ist nicht gestattet!");
     }
 
-    if (language == 2) {
+    if (language == 2) {                                                                    // Language pack English.
         strcpy(menuOneFour, "Please choose a number between 0 and 4 only.");
         strcpy(exitMenu, "0. Exit!");
         strcpy(addMenu, "1. Addition");
@@ -97,24 +98,24 @@ int main() {
 
     mainMenu();
 
-    while (choice < 0 || choice > 4) {
+    while (choice < 0 || choice > 4) {                                                      // Fail safe for the main menu.
         printf("%s\n", menuOneFour);
         mainMenu();
     }
 
-    while (choice != 0) {
+    while (choice != 0) {                                                                                   // As long as the choice isn't zero, the calculator returns to the main menu after the calculation.
 
         if (choice == 1) {
             getNumbersAddition();
-            printf("%Lf + %Lf = %Lf\n", firstNumber, secondNumber, firstNumber + secondNumber);
+            printf("%lf + %lf = %lf\n", firstNumber, secondNumber, firstNumber + secondNumber);
             mainMenu();
         } else if (choice == 2) {
             getNumbersSubtraction();
-            printf("%Lf - %Lf = %Lf\n", firstNumber, secondNumber, firstNumber - secondNumber);
+            printf("%lf - %lf = %lf\n", firstNumber, secondNumber, firstNumber - secondNumber);
             mainMenu();
         } else if (choice == 3) {
             getNumbersMultiplication();
-            printf("%Lf * %Lf = %Lf\n", firstNumber, secondNumber, firstNumber * secondNumber);
+            printf("%lf * %lf = %lf\n", firstNumber, secondNumber, firstNumber * secondNumber);
             mainMenu();
         } else if (choice == 4) {
             getNumbersDivision();
@@ -122,7 +123,7 @@ int main() {
                 printf("%s\n", errorDivZero);
                 mainMenu();
             } else {
-                printf("%Lf / %Lf = %Lf\n", firstNumber, secondNumber, firstNumber / secondNumber);
+                printf("%lf / %lf = %lf\n", firstNumber, secondNumber, firstNumber / secondNumber);
                 mainMenu();
             }  
         }
